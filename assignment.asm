@@ -46,7 +46,7 @@ tb_7segment:
     .db 0b01111001, 0b01110001 ; e and f
 
 ;======= data segment
-.desg
+;.desg
 
 ;==== eeprom segment
 .eseg

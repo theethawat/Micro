@@ -1,0 +1,2 @@
+@ECHO OFF
+"C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "C:\Users\lenovo\OneDrive\Desktop\Micro\labels.tmp" -fI -W+ie -C V2E -o "C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.hex" -d "C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.obj" -e "C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.eep" -m "C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.map" "C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm"
