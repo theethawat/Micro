@@ -19,7 +19,7 @@
 main:   
     ;------- read 4 switchs
     in a, pinc   ; 4 switches are connected to bit 0-3
-    andi a,0x0f  ; upper 4 bits are filtered out 
+    andi a,0x01  ; upper 7 bits are filtered out 
     
     ;------- look table
     ldi zl, low(tb_7segment*2) ; load z register low
