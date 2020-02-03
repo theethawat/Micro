@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.42  C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm Sun Feb 02 01:23:58 2020
+AVRASM ver. 2.1.42  C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm Mon Feb 03 20:50:33 2020
 
 
 EQU  SIGNATURE_000 0000001e
@@ -697,5 +697,18 @@ EQU  all_pin_out  000000ff
 EQU  all_pin_in   00000000
 DEF  a            r16
 DEF  tmp          r17
-CSEG main         00000005
-CSEG tb_7segment  0000000f
+DEF  delay_counter1 r18
+DEF  delay_counter2 r19
+DEF  delay_counter3 r20
+DEF  counter      r21
+CSEG init_counter 00000005
+CSEG loop_count   00000006
+CSEG even_count   00000014
+CSEG odd_count    0000000a
+CSEG change_to_odd_count 00000011
+CSEG disp_7seg    0000001e
+CSEG delay_loop   00000029
+CSEG change_to_even_count 0000001b
+CSEG tb_7segment  00000037
+CSEG check_delay_counter2 0000002d
+CSEG check_delay_counter3 00000032

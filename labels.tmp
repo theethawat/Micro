@@ -19,7 +19,16 @@
   <FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <main><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>19</LINE></main>
-  <tb_7segment><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>38</LINE></tb_7segment>
+  <init_counter><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>24</LINE></init_counter>
+  <loop_count><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>26</LINE></loop_count>
+  <even_count><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>48</LINE></even_count>
+  <odd_count><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>34</LINE></odd_count>
+  <change_to_odd_count><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>43</LINE></change_to_odd_count>
+  <disp_7seg><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>63</LINE></disp_7seg>
+  <delay_loop><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>77</LINE></delay_loop>
+  <change_to_even_count><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>58</LINE></change_to_even_count>
+  <tb_7segment><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>101</LINE></tb_7segment>
+  <check_delay_counter2><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>83</LINE></check_delay_counter2>
+  <check_delay_counter3><FILE>C:\Users\lenovo\OneDrive\Desktop\Micro\assignment.asm</FILE><LINE>90</LINE></check_delay_counter3>
  </LABELS>
 </ASSEMBLER_INFO>
