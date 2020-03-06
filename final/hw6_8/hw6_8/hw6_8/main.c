@@ -1,49 +1,71 @@
-/*
- * hw6_8.c
- *
- * Created: 6/3/2563 9:21:17
- * Author : Chayanon Sukkhat
- */ 
-#define F_CPU 1000000UL
+#define F_CPU 8000000UL
+
 #include <avr/io.h>
 #include <util/delay.h>
 
-void blink1sec(void){
-	//blink every 1 secs if results = 0
-	PORTD = 0xff;
-	_delay_ms(1000);
+
+void display_wave(){
+	PORTD = 0b00000001;
+	for(unsigned char i=0;i<8;i++){
+		_delay_ms(50);
+		PORTD = PORTD<<1;
+		_delay_ms(50);
+	}
+}
+
+void display_result_positive(char result){
+	PORTD = result;
+}
+
+void display_result_nagative(char result){
+	//result = result + 1;
+	PORTD = result;
+	_delay_ms(500);
 	PORTD = 0x00;
-	_delay_ms(1000);
-}
-void blinkRun(void){
-	//blink running from left to right
+	_delay_ms(500);
 }
 
-	
-int main(void)
-{
-	DDRD = 0xff; //port D as output
-	DDRB = 0x00; //port B(dipsw8) as input
-	DDRC = 0x00; //port C(dipsw4) as input
 
-	char inputFromPinB, inputFromPinC, results;
-	    
-    while (1) 
-    {
-		inputFromPinB = PINB; //use all of 8 inputs
-		inputFromPinC = PINC & 0x0f; //mask upper 4 bits
-		results = inputFromPinB / inputFromPinC;
-		if(results == 0)
-		{
-			blink1sec();
+int main(){
+
+	DDRD = 0xFF;  // Defind PORTD to be output
+	DDRB = 0x00;  // Defind PORTB to be input
+	DDRC = 0x00;  // Defind PORTC to be input
+
+	unsigned char inputFromPinB; // variable to store 8 bit input value from PINB
+	unsigned char inputFromPinC; // variable to store 8 bit input value from PINC
+	unsigned char isInputFromPinBNagative;
+	unsigned char isInputFromPinCNagative;
+	unsigned char result;
+
+	while(1){
+		inputFromPinB = PINB; //0xFF
+		inputFromPinC = PINC;
+
+		isInputFromPinBNagative = (inputFromPinB & 0b10000000);
+		isInputFromPinCNagative = (inputFromPinC & 0b00001000);
+
+		if(isInputFromPinBNagative){
+			inputFromPinB = ~inputFromPinB +1;
 		}
-		else if(results < 0){
-			blinkRun();
+
+		if(isInputFromPinCNagative){
+			inputFromPinC |= 0xF0;
+			inputFromPinC = ~inputFromPinC +1;
+			}else{
+			inputFromPinC &= 0x0F;
 		}
-		else{
-			PORTD = results;
+
+		if(inputFromPinC == 0){
+			display_wave();
+			}else{
+			result = inputFromPinB/inputFromPinC;
+			if((isInputFromPinBNagative && !isInputFromPinCNagative) || (!isInputFromPinBNagative && isInputFromPinCNagative)){
+				display_result_nagative(result);
+				}else{
+				display_result_positive(result);
+			}
 		}
-		
-    }
+	}
+
 }
-
