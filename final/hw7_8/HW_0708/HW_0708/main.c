@@ -114,11 +114,11 @@ unsigned int check_for_reset(unsigned int data_value){
 	unsigned char check_button;
 	check_button = PIND;
 	check_button &= 0b00000100;
-	check_button = check_button << 1;
+	check_button = check_button >> 2;
 	if(check_button == 0){
 		check_button = PIND;
 		check_button &= 0b00000100;
-		check_button = check_button << 1;
+		check_button = check_button >> 2;
 		if(check_button == 0){
 			return 0;
 		}
