@@ -1,0 +1,247 @@
+
+HW_0614.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000164  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000a  00800060  00000164  000001d8  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000001e2  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000214  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000050  00000000  00000000  00000250  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000090c  00000000  00000000  000002a0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000068c  00000000  00000000  00000bac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000037b  00000000  00000000  00001238  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000084  00000000  00000000  000015b4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000003a2  00000000  00000000  00001638  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000002c7  00000000  00000000  000019da  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000040  00000000  00000000  00001ca1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 e6       	ldi	r30, 0x64	; 100
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 36       	cpi	r26, 0x6A	; 106
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 93 00 	call	0x126	; 0x126 <main>
+  7a:	0c 94 b0 00 	jmp	0x160	; 0x160 <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <display_number>:
+uint8_t merge_limit(uint8_t edgeten,uint8_t edgeone){
+	uint8_t temp;
+	temp = edgeten * 10;
+	temp = temp + edgeone;
+	return temp;
+}
+  82:	9d ec       	ldi	r25, 0xCD	; 205
+  84:	89 9f       	mul	r24, r25
+  86:	e1 2d       	mov	r30, r1
+  88:	11 24       	eor	r1, r1
+  8a:	e6 95       	lsr	r30
+  8c:	e6 95       	lsr	r30
+  8e:	e6 95       	lsr	r30
+  90:	3e 2f       	mov	r19, r30
+  92:	33 0f       	add	r19, r19
+  94:	23 2f       	mov	r18, r19
+  96:	22 0f       	add	r18, r18
+  98:	22 0f       	add	r18, r18
+  9a:	23 0f       	add	r18, r19
+  9c:	82 1b       	sub	r24, r18
+  9e:	a8 2f       	mov	r26, r24
+  a0:	b0 e0       	ldi	r27, 0x00	; 0
+  a2:	a0 5a       	subi	r26, 0xA0	; 160
+  a4:	bf 4f       	sbci	r27, 0xFF	; 255
+  a6:	8c 91       	ld	r24, X
+  a8:	82 bb       	out	0x12, r24	; 18
+  aa:	e9 9f       	mul	r30, r25
+  ac:	81 2d       	mov	r24, r1
+  ae:	11 24       	eor	r1, r1
+  b0:	86 95       	lsr	r24
+  b2:	86 95       	lsr	r24
+  b4:	86 95       	lsr	r24
+  b6:	88 0f       	add	r24, r24
+  b8:	98 2f       	mov	r25, r24
+  ba:	99 0f       	add	r25, r25
+  bc:	99 0f       	add	r25, r25
+  be:	89 0f       	add	r24, r25
+  c0:	e8 1b       	sub	r30, r24
+  c2:	f0 e0       	ldi	r31, 0x00	; 0
+  c4:	e0 5a       	subi	r30, 0xA0	; 160
+  c6:	ff 4f       	sbci	r31, 0xFF	; 255
+  c8:	80 81       	ld	r24, Z
+  ca:	85 bb       	out	0x15, r24	; 21
+  cc:	2f ef       	ldi	r18, 0xFF	; 255
+  ce:	83 ed       	ldi	r24, 0xD3	; 211
+  d0:	90 e3       	ldi	r25, 0x30	; 48
+  d2:	21 50       	subi	r18, 0x01	; 1
+  d4:	80 40       	sbci	r24, 0x00	; 0
+  d6:	90 40       	sbci	r25, 0x00	; 0
+  d8:	e1 f7       	brne	.-8      	; 0xd2 <display_number+0x50>
+  da:	00 c0       	rjmp	.+0      	; 0xdc <display_number+0x5a>
+  dc:	00 00       	nop
+  de:	08 95       	ret
+
+000000e0 <run_number>:
+  e0:	81 11       	cpse	r24, r1
+  e2:	04 c0       	rjmp	.+8      	; 0xec <run_number+0xc>
+  e4:	66 23       	and	r22, r22
+  e6:	41 f0       	breq	.+16     	; 0xf8 <run_number+0x18>
+  e8:	61 50       	subi	r22, 0x01	; 1
+  ea:	09 c0       	rjmp	.+18     	; 0xfe <run_number+0x1e>
+  ec:	81 30       	cpi	r24, 0x01	; 1
+  ee:	39 f4       	brne	.+14     	; 0xfe <run_number+0x1e>
+  f0:	64 17       	cp	r22, r20
+  f2:	20 f4       	brcc	.+8      	; 0xfc <run_number+0x1c>
+  f4:	6f 5f       	subi	r22, 0xFF	; 255
+  f6:	03 c0       	rjmp	.+6      	; 0xfe <run_number+0x1e>
+  f8:	64 2f       	mov	r22, r20
+  fa:	01 c0       	rjmp	.+2      	; 0xfe <run_number+0x1e>
+  fc:	60 e0       	ldi	r22, 0x00	; 0
+  fe:	86 2f       	mov	r24, r22
+ 100:	08 95       	ret
+
+00000102 <read_dipswitch>:
+ 102:	81 30       	cpi	r24, 0x01	; 1
+ 104:	11 f4       	brne	.+4      	; 0x10a <read_dipswitch+0x8>
+ 106:	99 b3       	in	r25, 0x19	; 25
+ 108:	03 c0       	rjmp	.+6      	; 0x110 <read_dipswitch+0xe>
+ 10a:	82 30       	cpi	r24, 0x02	; 2
+ 10c:	09 f4       	brne	.+2      	; 0x110 <read_dipswitch+0xe>
+ 10e:	96 b3       	in	r25, 0x16	; 22
+ 110:	89 2f       	mov	r24, r25
+ 112:	8f 71       	andi	r24, 0x1F	; 31
+ 114:	8a 30       	cpi	r24, 0x0A	; 10
+ 116:	08 f0       	brcs	.+2      	; 0x11a <read_dipswitch+0x18>
+ 118:	89 e0       	ldi	r24, 0x09	; 9
+ 11a:	08 95       	ret
+
+0000011c <get_direction>:
+
+unsigned char get_direction(){
+	// 1 as up, 0 as down
+	uint8_t temp;
+	temp = PINB;
+ 11c:	86 b3       	in	r24, 0x16	; 22
+	temp &= 0b10000000;
+	temp = temp >> 7;
+	return temp;
+}
+ 11e:	88 1f       	adc	r24, r24
+ 120:	88 27       	eor	r24, r24
+ 122:	88 1f       	adc	r24, r24
+ 124:	08 95       	ret
+
+00000126 <main>:
+
+int main(void)
+{
+	/* Replace with your application code */
+	// Port A and B as Input Port C and D as Output
+	DDRA = 0x00;
+ 126:	1a ba       	out	0x1a, r1	; 26
+	DDRB = 0x00;
+ 128:	17 ba       	out	0x17, r1	; 23
+	DDRC = 0xFF;
+ 12a:	8f ef       	ldi	r24, 0xFF	; 255
+ 12c:	84 bb       	out	0x14, r24	; 20
+	DDRD = 0xFF;
+ 12e:	81 bb       	out	0x11, r24	; 17
+	uint8_t edge_ten,edge_one,limit,number;
+	number = 0;
+ 130:	d0 e0       	ldi	r29, 0x00	; 0
+	unsigned char direction = 1;
+	while (1)
+	{
+		edge_ten = read_dipswitch(1);
+ 132:	81 e0       	ldi	r24, 0x01	; 1
+ 134:	0e 94 81 00 	call	0x102	; 0x102 <read_dipswitch>
+ 138:	c8 2f       	mov	r28, r24
+		edge_one = read_dipswitch(2);
+ 13a:	82 e0       	ldi	r24, 0x02	; 2
+ 13c:	0e 94 81 00 	call	0x102	; 0x102 <read_dipswitch>
+}
+
+uint8_t merge_limit(uint8_t edgeten,uint8_t edgeone){
+	uint8_t temp;
+	temp = edgeten * 10;
+	temp = temp + edgeone;
+ 140:	cc 0f       	add	r28, r28
+ 142:	9c 2f       	mov	r25, r28
+ 144:	99 0f       	add	r25, r25
+ 146:	99 0f       	add	r25, r25
+ 148:	c9 0f       	add	r28, r25
+ 14a:	c8 0f       	add	r28, r24
+	while (1)
+	{
+		edge_ten = read_dipswitch(1);
+		edge_one = read_dipswitch(2);
+		limit = merge_limit(edge_ten,edge_one);
+		direction = get_direction();
+ 14c:	0e 94 8e 00 	call	0x11c	; 0x11c <get_direction>
+		number = run_number(direction,number,limit);
+ 150:	4c 2f       	mov	r20, r28
+ 152:	6d 2f       	mov	r22, r29
+ 154:	0e 94 70 00 	call	0xe0	; 0xe0 <run_number>
+ 158:	d8 2f       	mov	r29, r24
+		display_number(number);
+ 15a:	0e 94 41 00 	call	0x82	; 0x82 <display_number>
+ 15e:	e9 cf       	rjmp	.-46     	; 0x132 <main+0xc>
+
+00000160 <_exit>:
+ 160:	f8 94       	cli
+
+00000162 <__stop_program>:
+ 162:	ff cf       	rjmp	.-2      	; 0x162 <__stop_program>
